@@ -1,15 +1,19 @@
 <?php
-//データベース연결
-$servername = "localhost";
-$username = "root";
-$password = "12345678";
-$database = "board_login";
-
-//MySQL（データベース）とPHPをつなぐ「接続オブジェクト」
-$conn = new mysqli($servername, $username, $password, $database);
-
-//MySQLとの接続に失敗してたら、エラーを出して処理を止める
-if ($conn->connect_error){
-    die("연결 실패: ". $conn->connect_error);
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h5>환영합니다, <?php echo $_SESSION['username']; ?>님! <a href="logout.php">로그아웃</a> </h5>
+</body>
+</html>

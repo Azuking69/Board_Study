@@ -1,3 +1,26 @@
+<?php
+include("db_connect.php");
+
+if (!isset($_GET['id'])) {
+    echo "잘못된 접근입니다.";
+    exit();
+}
+
+$id = $_GET['id'];
+$sql = "SELECT * FROM board WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+if (!$row) {
+    echo "해당 게시글이 존재하지 않습니다.";
+    exit();
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html lang="ko">
 
@@ -17,7 +40,6 @@
     <p><?php echo nl2br(htmlspecialchars($row['content'])); ?></p>
     <br>
 
-
     <table>
         <tr>
             <td>
@@ -26,6 +48,7 @@
                     <button type="submit">수정</button>
                 </form>
             </td>
+
             <td>
                 <form action="delete_pass.php" method="get">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">

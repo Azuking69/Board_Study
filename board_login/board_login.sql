@@ -1,6 +1,6 @@
-CREATE DATABASE board_login
+CREATE DATABASE board_login;
 
-USE board_login
+USE board_login;
 
 CREATE TABLE board (
     id INT AUTO_INCREMENT PRIMARY key,

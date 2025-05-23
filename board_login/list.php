@@ -1,6 +1,6 @@
 <?php
 //Pythonでいうimport
-include 'header.php';
+//include 'header.php';
 include 'db_connect.php';
 
 //変数宣言
@@ -46,11 +46,11 @@ $result = $conn->query($sql);
 
 <head>
     <meta charset="UTF-8">
-    <title>계시판 | 리스트</title>
+    <title>게시판 | 리스트</title>
 </head>
 
 <body>
-    <h1>계시판 > 리스트</h1>
+    <h1>게시판 > 리스트</h1>
     <table border="1">
         <tr>
             <th>번호</th>
@@ -73,6 +73,10 @@ $result = $conn->query($sql);
         }
         ?>
     </table>
+
+    <br>
+
+    <button><a href="read.php">글쓰기</a></button>
 
 </body>
 

@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  php:
+    build: .
+    container_name: php
+    volumes:
+      - ./board_login:/var/www/html
+
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -12,17 +18,12 @@ services:
     depends_on:
       - php
 
-  php:
-    image: php:8.2-fpm
-    container_name: php
-    volumes:
-      - ./board_login:/var/www/html
-
   mysql:
     image: mysql:8.0
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: board_login
     ports:
       - "3306:3306"
     volumes:
