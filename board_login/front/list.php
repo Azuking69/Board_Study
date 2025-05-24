@@ -51,6 +51,7 @@ $result = $conn->query($sql);
 
 <body>
     <h1>게시판 > 리스트</h1>
+    <!-- 枠線付きのHTMLテーブル -->
     <table border="1">
         <tr>
             <th>번호</th>
@@ -62,13 +63,18 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0){
             while ($row = $result->fetch_assoc()){
                 echo "<tr>";
+                //番号（ID）
                 echo "<td>{$row['id']}</td>";
+                //投稿者の名前
                 echo "<td>{$row['name']}</td>";
+                //投稿タイトル（クリックで詳細へ）
                 echo "<td><a href='read.php?id={$row['id']}'>{$row['subject']}</a></td>";
+                //投稿日時
                 echo "<td>{$row['created_at']}</td>";
                 echo "</tr>";
             }
         } else{
+            // 検索結果がないときの表示
             echo "<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>";
         }
         ?>
