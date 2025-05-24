@@ -1,28 +1,27 @@
 <?php
-//フォームから POST リクエストでアクセスされなければ、アクセスを拒否
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    die("잘못된 접근입니다.");
-}
-
-$name = $_POST['name'];
-$password = $_POST['password'];
-$subject = $_POST['subject'];
-$content = $_POST['content'];
-
-$conn = new mysqli('mysql', 'root', '12345678', 'board_login');
-if ($conn->connect_error) {
-    die("DB 연결 실패: " . $conn->connect_error);
-}
-
-$sql = "INSERT INTO board (name, password, subject, content)
-        VALUES ('$name', '$password', '$subject', '$content')";
-
-if ($conn->query($sql) === TRUE) {
-    header("Location: list.php"); // 저장 후 목록으로 이동
-    exit();
-} else {
-    echo "글 등록 실패: " . $conn->error;
-}
-
-$conn->close();
+include("header.php");
 ?>
+
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 | 작성</title>
+</head>
+
+<body>
+    <h1>게시판 > 작성</h1>
+    <form action="insert_process.php" method="post">
+        이름 : <input type="text" name="name" placeholder="이름을 입력하세요"><br><br>
+        비밀번호 : <input type="password" name="password" placeholder="비밀번호를 입력하세요"><br><br>
+        제목 : <input type="text" name="subject" placeholder="내용을 입력하세요"><br><br>
+        내용 : <br><textarea name="content" rows="5" cols="40" placeholder="내용을 입력하세요"></textarea><br>
+        <input type="submit" value="저장">
+        <input type="reset" value="초기화"><br><br><hr>
+    </form>
+
+    <p>게시판 목록으로 돌아가시곘습니까? <a href="list.php">돌아가기</a></p>
+</body>
+
+</html>

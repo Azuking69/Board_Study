@@ -76,7 +76,7 @@ $result = $conn->query($sql);
 
     <br>
 
-    <button><a href="read.php">글쓰기</a></button>
+    <a href="insert.php"><button type="button">글쓰기</button></a>
 
 </body>
 

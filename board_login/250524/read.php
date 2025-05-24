@@ -17,7 +17,7 @@
 
     <table>
         <td>
-            <form action="update_pass.php" method="get">
+            <form action="update.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
             <button type="submit">수정</button>
 
@@ -27,7 +27,7 @@
         </td>
     </table>
 
-    <p>게시판 목록으로 돌아가시겠습니까?</p> <a href="">돌아가기</a>
+    <p>게시판 목록으로 돌아가시겠습니까? <a href="list.php">돌아가기</a></p>
 </body>
 
 </html>

@@ -19,7 +19,7 @@
         <tr>
             <td>1</td>
             <td>김효찬</td>
-            <td><a href="">아이스크림</a></td>
+            <td><a href="read.php">아이스크림</a></td>
             <td>2025-05-20 11:50:30</td>
         </tr>
     </table>

@@ -10,9 +10,9 @@
     <h1>게시판 > 게시글</h1>
 
     <table>
-        <tr>이름: </tr>
-        <tr>제목: </tr>
-        <tr>내용: </tr>
+        <tr>이름: <input type="text"></tr>
+        <tr>제목: <input type="text"></tr>
+        <tr>내용: <input type="text"></tr>
     </table>
 </body>
 
