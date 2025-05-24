@@ -1,6 +1,8 @@
 <?php
-include("header.php");
+ob_start(); // ← 必ず header() より前に出力を抑える
+include("header.php"); 
 ?>
+
 
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -12,7 +14,7 @@ include("header.php");
 
 <body>
     <h1>게시판 > 작성</h1>
-    <form action="insert_process.php" method="post">
+    <form action="../back/insert_process.php" method="post">
         이름 : <input type="text" name="name" placeholder="이름을 입력하세요"><br><br>
         비밀번호 : <input type="password" name="password" placeholder="비밀번호를 입력하세요"><br><br>
         제목 : <input type="text" name="subject" placeholder="내용을 입력하세요"><br><br>

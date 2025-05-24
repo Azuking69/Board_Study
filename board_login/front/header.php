@@ -14,6 +14,6 @@ if (!isset($_SESSION['username'])) {
     <title>Document</title>
 </head>
 <body>
-    <h5>환영합니다, <?php echo $_SESSION['username']; ?>님! <a href="logout.php">로그아웃</a> </h5>
+    <h5>환영합니다, <?php echo $_SESSION['username']; ?>님! <a href="logout.php">로그아웃</a></h5>
 </body>
 </html>

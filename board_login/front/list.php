@@ -1,7 +1,7 @@
 <?php
 //Pythonでいうimport
-//include 'header.php';
-include 'db_connect.php';
+include 'header.php';
+include(__DIR__ . '/../back/db_connect.php');
 
 //変数宣言
 $serch_type = isset($_GET['search_type']) ? $_GET['search_type'] : "subject";

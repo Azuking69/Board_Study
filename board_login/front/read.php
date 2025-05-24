@@ -1,5 +1,5 @@
 <?php
-include("db_connect.php");
+include("../back/db_connect.php");
 
 if (!isset($_GET['id'])) {
     echo "잘못된 접근입니다.";
@@ -35,7 +35,7 @@ if (!$row) {
     <h1><?php echo htmlspecialchars($row['subject']); ?></h1>
 
     <p><strong>작성자: </strong><?php echo htmlspecialchars($row['name']); ?></p>
-    <p><strong>작성일: </strong><?php echo $row['creatred_at']; ?></p>
+    <p><strong>작성일: </strong><?php echo $row['created_at']; ?></p>
     <br>
     <p><?php echo nl2br(htmlspecialchars($row['content'])); ?></p>
     <br>

@@ -8,13 +8,13 @@
 
 <body>
     <h1>로그인</h1>
-    <form action="login_process.php" method="post">
+    <form action="../back/login_process.php" method="post">
         <input type="email" name="id" placeholder="아이디를 입력하세요."><br>
         <input type="password" name="password" placeholder="비밀번호를 입력하세요."><br>
         <input type="submit" value="로그인"><br><br><hr>
     </form>
 
-    <p>아직 계정이 없으십니까? <a href="join.php"><button>회원가입</button></a></p>
+    <p>아직 계정이 없으십니까? <a href="join.php">회원가입</a></p>
 </body>
 
 </html>
