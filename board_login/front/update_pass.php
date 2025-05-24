@@ -43,14 +43,12 @@ $conn->close();
             <form action="../back/update_process.php" method="post">
                 <!-- 修正対象のIDを隠しフィールドで送る -->
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <p>이름 : <input type="text" name="name" value="<?php echo $row['name']; ?>" placeholder="이름을 입력하세요"></p>
-                <p>제목 : <input type="text" name="subject" value="<?php echo $row['subject']; ?>" placeholder="제목을 입력하세요"></p>
+                <p>이름 : <input type="text" name="name" value="<?php echo $row['name']; ?>"></p>
+                <p>제목 : <input type="text" name="subject" value="<?php echo $row['subject']; ?>"></p>
                 <p>내용 : <br>
-                <textarea name="content" rows="5" cols="40" placeholder="내용을 입력하세요" required><?php echo $row['content'] ?></textarea><br>
+                <textarea name="content" rows="5" cols="40"><?php echo $row['content'] ?></textarea></p>
                 <button type="submit">수정</button>
-            </from>
-                <form action="list.php" method="get">
-                <button type="subject">취소</button>
+                <a href="list.php"><button type="button">취소</button></a>
             </form>
         </tr>
     </table>
