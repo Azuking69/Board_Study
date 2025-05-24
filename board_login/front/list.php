@@ -1,9 +1,11 @@
 <?php
 //Pythonでいうimport
 include 'header.php';
+//現在のファイルが存在するディレクトリの絶対パス
 include(__DIR__ . '/../back/db_connect.php');
 
 //変数宣言
+//$_GET:「?以降のクエリパラメータ」を受け取るための連想配列
 $serch_type = isset($_GET['search_type']) ? $_GET['search_type'] : "subject";
 $serch_query = isset($_GET['search_query']) ? trim($_GET['search_query']) : "";
 
@@ -51,6 +53,19 @@ $result = $conn->query($sql);
 
 <body>
     <h1>게시판 > 리스트</h1>
+
+    <!-- 🔍 検索フォーム -->
+    <form method="get" action="" style="margin-bottom: 10px;">
+        <select name="search_type">
+            <option value="subject" <?= $serch_type == "subject" ? "selected" : "" ?>>제목</option>
+            <option value="name" <?= $serch_type == "name" ? "selected" : "" ?>>이름</option>
+            <option value="content" <?= $serch_type == "content" ? "selected" : "" ?>>내용</option>
+        </select>
+
+        <input type="text" name="search_query" value="<?= htmlspecialchars($serch_query) ?>" placeholder="검색어 입력" required>
+        <input type="submit" value="검색">
+    </form>
+
     <!-- 枠線付きのHTMLテーブル -->
     <table border="1">
         <tr>
