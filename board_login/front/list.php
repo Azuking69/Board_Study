@@ -5,8 +5,11 @@ include 'header.php';
 include(__DIR__ . '/../back/db_connect.php');
 
 //変数宣言
-//$_GET:「?以降のクエリパラメータ」を受け取るための連想配列
+//$_GET: 「?以降のクエリパラメータ」を受け取るための連想配列
+//クエリパラメータ: URLの末尾にくっつけてデータを渡す仕組み
+//isset(): 指定した変数が 存在していてNULLじゃないかをチェック
 $serch_type = isset($_GET['search_type']) ? $_GET['search_type'] : "subject";
+//trim(): 前後の空白・改行を除去
 $serch_query = isset($_GET['search_query']) ? trim($_GET['search_query']) : "";
 
 //１ページの表示数
