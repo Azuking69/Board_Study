@@ -2,17 +2,18 @@
 // データベース接続を読み込む
 include 'db_connect.php';
 
-// フォームから送信されたデータ（投稿IDとパスワード）を取得
+// deleteフォームから送信されたデータ（投稿IDとパスワード）を取得
 $id = $_POST['id'];
 $password = $_POST['password'];
 
 // 指定されたIDの投稿が存在するか確認する
-$sql = "SELECT * FROM board WHERE id =?";
-// プリペアドステートメントを準備
+// [?]: プレースホルダー, あとで値を入れる
+$sql = "SELECT * FROM board WHERE id = ?";
+// プリペアドステートメント(簡単にバレない様に回りくどくする)を準備
 $stmt = $conn->prepare($sql);
 // プレースホルダーにIDをバインド
 $stmt->bind_param("i", $id);
-// クエリ実行
+// クエリ(SQLをデータベースに送って)実行
 $stmt->execute();
 // 結果取得
 $result = $stmt->get_result();
