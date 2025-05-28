@@ -1,5 +1,5 @@
 <?php
-//　出力バッファリングを有効化（重要！）
+// 出力バッファリングを有効化（重要！）
 // 後に header()を使う場合、「出力」を一時的にメモリにためて、
 // 後から送信するモードに入る
 ob_start();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($result->num_rows > 0) {
         $_SESSION['username'] = $id;
         // セッションにログイン情報を保存
-        header("Location: ../front/insert.php"); // 成功したら insert.php へ
+        header("Location: ../front/list.php"); // 成功したら insert.php へ
         // 処理終了
         exit();
     } else {

@@ -2,13 +2,14 @@
 // DB接続ファイル読み込み
 include 'db_connect.php';
 
-// POSTデータ受け取り
+// POST: データ受け取り
 $id = $_POST['id'];
 $pass = $_POST['pass'];
 $pass_check = $_POST['pass_check'];
 
 // 🔐 入力チェック：空欄がある場合は登録させない
 if (empty($id) || empty($pass) || empty($pass_check)) {
+    # die(): プログラムを止める関数
     die("아이디와 비밀번호를 모두 입력해야 합니다. <a href='../front/join.php'>다시 시도</a>");
 }
 

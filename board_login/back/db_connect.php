@@ -1,8 +1,9 @@
 <?php
-//データベース연결
-$servername = "mysql"; // ←ここを変更
+// データベース연결
+$servername = "mysql";
 $username = "root";
 $password = "12345678";
+// MySQL中のboard_loginに貯蔵する
 $database = "board_login";
 
 //MySQL（データベース）とPHPをつなぐ「接続オブジェクト」
