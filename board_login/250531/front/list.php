@@ -2,23 +2,23 @@
     //📇database指定
     include ("../back/db_connect_nopass.php");
 
-    //🧾 1ページあたりの表示件数
+    //🧾1ページあたりの表示件数
     $perpage = 5;
     
-    //🧭 現在のページ番号（未指定なら1ページ目）
+    //🧭現在のページ番号（未指定なら1ページ目）
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     if ($page < 1) $page = 1;
 
 
-    //🧮 OFFSETを計算
+    //🧮OFFSETを計算
     $start = ($page - 1) * $perpage;
 
 
-    //📦 データ取得（ページ分だけ）
+    //📦データ取得（ページ分だけ）
     $sql = "SELECT * FROM board ORDER BY id DESC LIMIT $perpage OFFSET $start";
     $result = $conn -> query($sql);
 
-    //📊 全件数取得
+    //📊全件数取得
     $total_sql = "SELECT COUNT(*) AS total FROM board";
     $total_result = $conn->query($total_sql);
     $total_row = $total_result->fetch_assoc();

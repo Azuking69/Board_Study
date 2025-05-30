@@ -39,7 +39,7 @@ $totalRow = $totalResult->fetch_assoc();
 //「投稿の合計件数」を変数に入れる
 $total = $totalRow['total'];
 //ページ数を求める式
-$totalPages = ceil($total / $limit);
+$total_pages = ceil($total / $limit);
 
 //どの列を取ってくるかを決める
 $sql = "SELECT id, name, subject, created_at FROM board $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset";
@@ -78,11 +78,12 @@ $result = $conn->query($sql);
             <th>작성일</th>
         </tr>
         <?php
+        $count = $total - ($page - 1) * $limit;
         if ($result->num_rows > 0){
             while ($row = $result->fetch_assoc()){
                 echo "<tr>";
                 //番号（ID）
-                echo "<td>{$row['id']}</td>";
+                echo "<td>{$count}</td>";
                 //投稿者の名前
                 echo "<td>{$row['name']}</td>";
                 //投稿タイトル（クリックで詳細へ）
@@ -90,6 +91,7 @@ $result = $conn->query($sql);
                 //投稿日時
                 echo "<td>{$row['created_at']}</td>";
                 echo "</tr>";
+                $count--;
             }
         } else{
             // 検索結果がないときの表示
@@ -98,6 +100,47 @@ $result = $conn->query($sql);
         ?>
     </table>
 
+    <br>
+
+    <!--📄Pagenation-->
+    <?php
+    $pageRange = 5;  //１セットの表示数
+    $startPage = floor(($page - 1) / $pageRange) * $pageRange + 1;
+    $endPage = min($startPage + $pageRange - 1, $total_pages);
+
+    // <<: 最初のページ
+    if ($startPage > 1) {
+        echo "<a href='?page=1'>&laquo;</a> ";
+    }
+
+    // <: 前のページグループ
+    if ($startPage > 1) {
+        $prevSet = $startPage - 1;
+        echo "<a href='?page=$prevSet'>&lt;</a> ";
+    }
+
+    // ページ番号表示
+    for ($i = $startPage; $i <= $endPage; $i++) {
+        if ($i == $page) {
+            echo "<strong>$i</strong> ";
+        } else {
+            echo "<a href='?page=$i'>$i</a> ";
+        }
+    }
+
+    // >: 次のページグループ
+    if ($endPage < $total_pages) {
+        $nextSet = $endPage + 1;
+        echo "<a href='?page=$nextSet'>&gt;</a> ";
+    }
+
+    // >>: 最後のページ
+    if ($endPage < $total_pages) {
+        echo "<a href='?page=$total_pages'>&raquo;</a>";
+    }
+    ?>
+    </div>
+    <br>
     <br>
 
     <a href="insert.php"><button type="button">글쓰기</button></a>
