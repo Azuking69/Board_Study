@@ -1,9 +1,9 @@
 <?php
-    if (!isset($_GET['id'])){
+    if (!isset($_POST['id'])){
         echo "잘못된 접근입니다.";
         exit;
     }
-    $id = $_GET['id'];
+    $id = $_POST['id'];
 ?>
 
 <!DOCTYPE HTML>

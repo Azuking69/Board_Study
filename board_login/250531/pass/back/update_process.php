@@ -3,10 +3,10 @@
     include ("db_connect_pass.php");
 
     //📥フォームから送られてきたデータを変数で受け取る
-    $id = $_GET['id'];
-    $name = $_GET['name'];
-    $subject = $_GET['subject'];
-    $content = $_GET['content'];
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $subject = $_POST['subject'];
+    $content = $_POST['content'];
 
     //🔄️SQLで更新処理
     $sql = "UPDATE board SET name=?, subject=?, content=? WHERE id=?";

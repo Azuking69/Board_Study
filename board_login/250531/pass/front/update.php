@@ -4,7 +4,7 @@
     //isset(): ()内が含まれてるか確認
     //intaval(): int
     //:0: 初期値
-    $id = isset($_GET['id']) ? intval($_GET['id']): 0;
+    $id = isset($_POST['id']) ? intval($_POST['id']): 0;
 
     if ($id > 0){
         $sql = "SELECT name, subject, content FROM board WHERE id = $id";
@@ -37,7 +37,7 @@
     <table>
         <tr>
         <!--📝フォーム作成-->
-        <form action="../back/update_process.php" method='get'>
+        <form action="../back/update_process.php" method='POST'>
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <p>이름: <input type="text" name="name" value="<?php echo $row['name'] ?>"></p>
             <p>제목: <input type="text" name="subject" value="<?php echo $row['subject'] ?>" ?></p>

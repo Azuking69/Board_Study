@@ -42,7 +42,7 @@
         <tr>
             <td>
                 <!--📝수정（編集）入力フォームへ-->
-                <form action="update.php" method="get">
+                <form action="update.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <button type="submit">수정</button>
                 </form>
@@ -50,7 +50,7 @@
 
             <td>
                 <!--❌삭제（削除）入力フォームへ-->
-                <form action="delete.php" method="get">
+                <form action="delete.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <button type="submit">삭제</button>
                 </form>
