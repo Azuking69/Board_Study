@@ -41,6 +41,19 @@ services:
       - ./board_login/250531/board_nopass.sql:/docker-entrypoint-initdb.d/init.sql
       - db-data-nopass:/var/lib/mysql
 
+
+  db_pass:
+    image: mysql:8.0
+    container_name: db_pass
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: board_pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - db-pass-data:/var/lib/mysql
+
 volumes:
   db-data:
   db-data-nopass:
+  db-pass-data:
