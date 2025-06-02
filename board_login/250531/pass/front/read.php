@@ -1,6 +1,6 @@
 <?php
     //📇database指定
-    include ("../back/db_connect_nopass.php");
+    include ("../back/db_connect_pass.php");
     //変数に受け取った'id'を入れる
     $id = $_GET['id'];
 

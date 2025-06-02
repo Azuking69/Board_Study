@@ -1,6 +1,6 @@
 <?php
     //📇database指定
-    include ("../back/db_connect_nopass.php");
+    include ("../back/db_connect_pass.php");
     //isset(): ()内が含まれてるか確認
     //intaval(): int
     //:0: 初期値

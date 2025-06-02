@@ -1,6 +1,6 @@
 <?php
     //📇database指定
-    include ("../back/db_connect_nopass.php");
+    include ("../back/db_connect_pass.php");
 
     //🧾1ページあたりの表示件数
     $perpage = 5;

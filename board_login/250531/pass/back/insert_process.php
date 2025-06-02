@@ -9,13 +9,14 @@
     $content = $_POST['content'];
 
     //📥VALUESの中身をboardに書き込む
-    $sql = "INSERT INTO board (name, password, subject, content)
-    VALUES ('$name', '$password', '$subject', '$content')";
+    $sql = "INSERT INTO board (name, password, subject, content)VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $name, $password, $subject, $content);
 
-    if ($conn -> query($sql) === TRUE){
-        header("Location: ../front/list.php");
+    if ($stmt->execute()) {
+    header("Location: ../front/list.php");
     } else {
-        echo "글 등록 실패: " .$conn -> error;
+    echo "글 등록 실패: " . $conn->error;
     }
 
     $conn -> close();
