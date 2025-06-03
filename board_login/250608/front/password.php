@@ -10,8 +10,8 @@
     <h1>게시판 > 비밀번호 확인</h1>
 
     <!--🧾パスワード確認フォーム-->
-    <form action="update_delete.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>">
+    <form action="../back/password_process.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
         <p>비밀번호: <input type="password" name="password" placeholder="비밀번호를 입력하세요"></p><br>
         <input type="submit" value="확인">
     </form>

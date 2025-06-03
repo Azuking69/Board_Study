@@ -1,10 +1,9 @@
 <?php
     //📇database指定
     include ("../back/db_connect_pass.php");
-    //isset(): ()内が含まれてるか確認
-    //intaval(): int
-    //:0: 初期値
+
     $id = isset($_POST['id']) ? intval($_POST['id']): 0;
+    $password = isset($_POST['password']) ? $_POST['password'] : "";
 
     if ($id > 0){
         $sql = "SELECT name, subject, content FROM board WHERE id = $id";
@@ -45,9 +44,14 @@
             <textarea name="content" rows="5" cols="40"><?php echo $row['content'] ?></textarea></p>
 
             <button type="submit">수정</button>
-            <a href="list.php">
-                <button type="button">취소</button>
-            </a>
+        </form>
+
+        <br><br><bh>
+
+        <form action="../back/delete_process.php" method='POST'>
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <input type="hidden" name="password" value="<?php echo $password; ?>">
+            <button type="submit">삭제</button>
         </form>
 
         </tr>

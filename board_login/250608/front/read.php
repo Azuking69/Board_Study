@@ -1,6 +1,7 @@
 <?php
     //📇database指定
     include ("../back/db_connect_pass.php");
+    
     //変数に受け取った'id'を入れる
     $id = $_GET['id'];
 
@@ -40,7 +41,7 @@
 
     <!--📝パスワード入力フォームへ-->
     
-    <button type="button" onclick="location.href='password.php'">변경</button>
+    <button type="button" onclick="location.href='password.php?id=<?php echo $id; ?>'">변경</button>
     
                 
     <p>게시판 목록으로 돌아가시곘습니까?  <a href="list.php">돌아가기</a></p>
