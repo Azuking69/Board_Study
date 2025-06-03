@@ -13,13 +13,29 @@
     //🧮OFFSETを計算
     $start = ($page - 1) * $perpage;
 
+    //🔍 検索機能
+    $type = isset($_GET['type']) ? $_GET['type'] : '';
+    $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
+    $search_condition = "";
+
+    if ($type && $keyword) {
+        $keyword_esc = $conn->real_escape_string($keyword);
+        if ($type === 'subject') {
+            $search_condition = "WHERE subject LIKE '%$keyword_esc%'";
+        } elseif ($type === 'content') {
+            $search_condition = "WHERE content LIKE '%$keyword_esc%'";
+        } elseif ($type === 'all') {
+            $search_condition = "WHERE subject LIKE '%$keyword_esc%' OR content LIKE '%$keyword_esc%'";
+        }
+    }
 
     //📦データ取得（ページ分だけ）
-    $sql = "SELECT * FROM board ORDER BY id DESC LIMIT $perpage OFFSET $start";
-    $result = $conn -> query($sql);
+    $sql = "SELECT * FROM board $search_condition ORDER BY id DESC LIMIT $perpage OFFSET $start";
+    $result = $conn->query($sql);
+    $total_sql = "SELECT COUNT(*) AS total FROM board $search_condition";
+
 
     //📊全件数取得
-    $total_sql = "SELECT COUNT(*) AS total FROM board";
     $total_result = $conn->query($total_sql);
     $total_row = $total_result->fetch_assoc();
     $total_posts = $total_row['total'];
@@ -36,6 +52,20 @@
 
 <body>
     <h1>게시판 > 리스트</h1>
+
+    <!--🔍 検索フォーム -->
+    <form method="get" action="list.php" style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <select name="type">
+            <option value="subject" <?php if(isset($_GET['type']) && $_GET['type'] === 'subject') echo 'selected'; ?>>제목</option>
+            <option value="content" <?php if(isset($_GET['type']) && $_GET['type'] === 'content') echo 'selected'; ?>>내용</option>
+            <option value="all" <?php if(isset($_GET['type']) && $_GET['type'] === 'all') echo 'selected'; ?>>제목+내용</option>
+        </select>
+        <input type="text" name="keyword" placeholder="검색어를 입력하세요" value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
+        <input type="submit" value="검색">
+        <a href="list.php"><button type="button">초기화</button></a>
+    </form>
+
+
     <!--📇リスト化-->
     <table border="1">
         <tr>
