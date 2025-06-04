@@ -55,21 +55,27 @@
     }
     // コメントがある場合表示
     while ($comment = $comment_result->fetch_assoc()) {
-    echo "<div style='border-bottom:1px solid #ccc; padding:10px;'>";
-    echo "<p><strong>{$comment['name']}</strong> ({$comment['created_at']})</p>";
-    echo "<p>" . nl2br($comment['content']) . "</p>";
+    ?>
+    <!--📝コメント表示-->
+    <div id="comment-view-<?= $comment['id'] ?>" style="border-bottom:1px solid #ccc; padding:10px;">
+    <p><strong><?= $comment['name'] ?></strong> (<?= $comment['created_at'] ?>)</p>
+    <p><?= nl2br($comment['content']) ?></p>
+    <button type="button" onclick="toggleEdit(<?= $comment['id'] ?>)">변경</button>
+    </div>
 
-    // 수정ボタン付き削除フォーム（パスワード必要）
-    echo "<form action='../back/comment_delete.php' method='post'>";
-    echo "<input type='hidden' name='post_id' value='$id'>";
-    echo "<input type='hidden' name='comment_id' value='{$comment['id']}'>";
-    echo "비밀번호 입력 후 삭제: ";
-    echo "<input type='password' name='password' required>";
-    echo "<button type='submit'>삭제</button>";
-    echo "</form>";
-
-    echo "</div>";
-}
+    <!-- ✍️ 編集フォーム（最初は非表示） -->
+    <div id="comment-edit-<?= $comment['id'] ?>" style="display: none; border-bottom:1px solid #ccc; padding:10px;">
+        <form action="../back/comment_action.php" method="post">
+            <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>">
+            <input type="hidden" name="post_id" value="<?= $id ?>">
+            <textarea name="content" rows="3" cols="50"><?= $comment['content'] ?></textarea><br>
+            <p>비밀번호: <input type="password" name="password" placeholder="비밀번호를 입력하세요" required></p><br>
+            <button type="submit" name="action" value="update">수정</button>
+            <button type="submit" name="action" value="delete">삭제</button>
+        </form>
+    </div>
+    <?php
+    }
     ?>
     <br><br><hr>
 
@@ -88,5 +94,21 @@
     <!--🏃最初の画面に戻る-->
     <p>게시판 목록으로 돌아가시곘습니까?  <a href="list.php">돌아가기</a></p>
 </body>
+
+<script>
+function toggleEdit(commentId) {
+  const view = document.getElementById("comment-view-" + commentId);
+  const edit = document.getElementById("comment-edit-" + commentId);
+
+  if (edit.style.display === "none") {
+    edit.style.display = "block";
+    view.style.display = "none";
+  } else {
+    edit.style.display = "none";
+    view.style.display = "block";
+  }
+}
+</script>
+
 
 </html>
