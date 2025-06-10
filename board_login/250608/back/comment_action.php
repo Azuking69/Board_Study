@@ -50,6 +50,7 @@
                 exit;
 
             } else {
+                // "update"でも"delete"でもない未知のアクションが指定された場合
                 echo "<script>alert('❗알 수 없는 작업입니다.'); history.back(); </script>";
                 exit;
             }
@@ -58,6 +59,7 @@
             exit;
         }
     } else {
+        // そもそも指定されたIDのコメントが存在しなかった場合
         echo "<script>alert('❗댓글을 찾을 수 없습니다.'); history.back(); </script>";
         exit;
     }
