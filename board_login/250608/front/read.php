@@ -54,7 +54,7 @@
         echo "<p>등록된 댓글이 없습니다.</p>";
     }
     // コメントがある場合表示
-    while ($comment = $comment_result->fetch_assoc()) {
+    while ($comment = $comment_result -> fetch_assoc()) {
     ?>
     <!--📝コメント表示-->
     <div id="comment-view-<?= $comment['id'] ?>" style="border-bottom:1px solid #ccc; padding:10px;">

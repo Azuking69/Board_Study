@@ -38,7 +38,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./board_login/250531/board_nopass.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./board_login/250531:/docker-entrypoint-initdb.d
       - db-data-nopass:/var/lib/mysql
 
 
