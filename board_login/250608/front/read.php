@@ -28,6 +28,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="http://cdn.tailwindcss.com"></script>
     <title>게시판 | 상세보기</title>
 </head>
 
@@ -60,7 +61,7 @@
     <div id="comment-view-<?= $comment['id'] ?>" style="border-bottom:1px solid #ccc; padding:10px;">
     <p><strong><?= $comment['name'] ?></strong> (<?= $comment['created_at'] ?>)</p>
     <p><?= nl2br($comment['content']) ?></p>
-    <button type="button" onclick="toggleEdit(<?= $comment['id'] ?>)">변경</button>
+    <button class="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-600" type="button" onclick="toggleEdit(<?= $comment['id'] ?>)">변경</button>
     </div>
 
     <!-- ✍️ 編集フォーム（最初は非表示） -->

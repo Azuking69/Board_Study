@@ -48,10 +48,16 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판 | 리스트</title>
+    <script>
+        tailwind.config = {
+            important: '.tw'
+        };
+    </script>
+    <script src="http://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <h1>게시판 > 리스트</h1>
+    <h1 class="bg-blue-200">게시판 > 리스트</h1>
 
     <!--🔍 検索フォーム -->
     <form method="get" action="list.php" style="display: flex; gap: 10px; margin-bottom: 20px;">
